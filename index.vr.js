@@ -8,9 +8,9 @@ class Planet extends Component{
     this.state = {
       translate: [0,0,0],
       scale: 0.05,
-      rotateX: -10,
+      rotateX: 0,
       rotateY: 0,
-      rotateZ: -10,
+      rotateZ: 0,
       obj: 'earth.obj',
       mtl: 'earth.mtl'
     }
@@ -36,7 +36,7 @@ class Planet extends Component{
 
     return(
       <View>
-        <AmbientLight intensity={ 2.6 } />
+        <AmbientLight intensity={ 2 } />
         <Model
           style={{
             transform: [ {translate: translate},{scale: scale },{rotateY: y},{rotateX: x},{rotateZ: z} ],
@@ -88,15 +88,32 @@ class PlanetContainer extends Component {
 }
 
 class PlanetsVR extends Component {
+  constructor(){
+    super()
+    this.state = {
+      positionX:  -40
+    }
+  }
   render() {
+    let positionX = this.state.positionX
     return (
-      <View>
-        <View style={{
-          transform: [{translate:[10,0,10]},{rotateY:0}]
-        }}>
-          {/* <Pano source={asset(this.state.background)}/> */}
+      //Setting for the parent view change this x axis to translate entire view
+      <View style={{
+        transform: [{translate:[positionX,0,40]}],
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'stretch'
+      }}>
+
+        <View style={{transform: [{translate:[10,0,-20]}]}}>
           <PlanetContainer planet="earth" description="this is a description of earth"/>
         </View>
+
+        <View style={{transform: [{translate:[100,0,-20]}]}}>
+          <PlanetContainer planet="earth" description="this is a description of earth"/>
+        </View>
+
+
       </View>
     );
   }
