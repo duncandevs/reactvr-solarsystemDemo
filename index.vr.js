@@ -87,15 +87,12 @@ class PlanetContainer extends Component {
   }
 }
 
-class PlanetsVR extends Component {
-  constructor(){
-    super()
-    this.state = {
-      positionX:  -40
-    }
+class PlanetsList extends Component {
+  constructor(props){
+    super(props)
   }
   render() {
-    let positionX = this.state.positionX
+    let positionX = this.props.positionX
     return (
       //Setting for the parent view change this x axis to translate entire view
       <View style={{
@@ -116,6 +113,42 @@ class PlanetsVR extends Component {
 
       </View>
     );
+  }
+}
+
+class PlanetsVR extends Component {
+  constructor(){
+    super()
+    this.state = {
+      positionX: 0
+    }
+  }
+
+  render(){
+    return(
+      <View>
+        <PlanetsList positionX={-60} />
+
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          width: 50,
+          alignItems: 'stretch',
+          transform: [{translate:[20,2,-40]}]
+        }}>
+
+          <View style={{ margin: 1, height: 5}}>
+            <Text style={{fontSize: 4, textAlign: 'center'}}>{'<'}</Text>
+          </View>
+
+          <View style={{ margin: 1, height: 5}}>
+            <Text style={{fontSize: 4, textAlign: 'center'}}>{'>'}</Text>
+          </View>
+
+        </View>
+
+      </View>
+    )
   }
 }
 
