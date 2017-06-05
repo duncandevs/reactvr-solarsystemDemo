@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, Text, View, Model, AmbientLight} from 'react-vr';
+import { AppRegistry, asset, Pano, Text, View, Model, AmbientLight, VrButton} from 'react-vr';
 
 
 class Planet extends Component{
@@ -124,10 +124,22 @@ class PlanetsVR extends Component {
     }
   }
 
+  handleNext(){
+    this.setState({
+      positionX: this.state.positionX - 50
+    })
+  }
+
+  handleBack(){
+    this.setState({
+      positionX: this.state.positionX + 50
+    })
+  }
+
   render(){
     return(
       <View>
-        <PlanetsList positionX={-60} />
+        <PlanetsList positionX={this.state.positionX} />
 
         <View style={{
           flex: 1,
@@ -138,11 +150,15 @@ class PlanetsVR extends Component {
         }}>
 
           <View style={{ margin: 1, height: 5}}>
-            <Text style={{fontSize: 4, textAlign: 'center'}}>{'<'}</Text>
+            <VrButton onClick={()=>this.handleBack()}>
+              <Text style={{fontSize: 4, textAlign: 'center'}}>{'<'}</Text>
+            </VrButton>
           </View>
 
           <View style={{ margin: 1, height: 5}}>
-            <Text style={{fontSize: 4, textAlign: 'center'}}>{'>'}</Text>
+            <VrButton onClick={()=>this.handleNext()}>
+              <Text style={{fontSize: 4, textAlign: 'center'}}>{'>'}</Text>
+            </VrButton>
           </View>
 
         </View>
