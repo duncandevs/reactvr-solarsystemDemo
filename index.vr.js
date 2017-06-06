@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { AppRegistry, asset, Pano, Text, View, Model, AmbientLight, VrButton, Video, VideoPano} from 'react-vr';
+
 
 
 class Planet extends Component{
@@ -259,12 +261,15 @@ class PlanetsVR extends Component {
 
   handleNext(){
     this.setState({
+
       positionX: this.state.positionX - 150
+
     })
   }
 
   handleBack(){
     this.setState({
+
       positionX: this.state.positionX + 150
     })
   }
@@ -278,12 +283,14 @@ class PlanetsVR extends Component {
   handleZoomOut(){
     this.setState({
       positionZ: this.state.positionZ + 100
+
     })
   }
 
   render(){
     return(
       <View>
+
         <Pano source={asset('./panos/stars02.jpg')}/>
         {/* <VideoPano source={asset('spaceVideo.mp4')} /> */}
         <PlanetsList positionX={this.state.positionX} positionZ={this.state.positionZ}/>
